@@ -34,7 +34,6 @@ public class TeleportPlayer : MonoBehaviour
             localPosition = portalManager.CalculateLocalPosition(portalManager.portals[i], playerController.transform.position);
             if (portalManager.PortalTeleported(portalManager.portals[i], localPosition, lastDistances[i]))
             {
-                portalManager.FadeInPortals();
                 playerController.enabled = false;
                 transform.position = portalManager.UpdatePosition(portalManager.portals[i], localPosition);
                 transform.rotation = portalManager.UpdateRotation(portalManager.portals[i], transform.rotation);

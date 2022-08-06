@@ -1,18 +1,17 @@
-﻿Shader "Unlit/UniltSST"
+﻿Shader "Portal/PortalSurface"
 {
 	Properties
 	{
-		_Color("Main Color (A=Opacity)", Color) = (1,1,1,1)
-		_MainTex("Texture", 2D) = "white" {}
+		_Color("Fade Color", Color) = (1,1,1,1)
+		_MainTex("Texture", 2D) = "black" {}
 	}
-		SubShader
+	SubShader
 	{
 		
 		Tags { "RenderType" = "Transparent" }
 		ZWrite Off
-		Blend One OneMinusSrcAlpha
-		//LOD 100
-
+		//Blend One OneMinusSrcAlpha
+		
 		Pass
 		{
 			CGPROGRAM
@@ -40,6 +39,8 @@
 
 			fixed4 _Color;
 
+			float _ColorStrength;
+
 			v2f vert(appdata v)
 			{
 				v2f o;
@@ -52,8 +53,7 @@
 			fixed4 frag(v2f i) : SV_Target
 			{
 				float2 textureCoordinate = i.screenPosition.xy / i.screenPosition.w;
-				fixed4 col = tex2D(_MainTex, textureCoordinate);
-				col *= _Color;
+				fixed4 col = lerp(tex2D(_MainTex, textureCoordinate), _Color, _ColorStrength);
 				return col;
 			}
 			ENDCG

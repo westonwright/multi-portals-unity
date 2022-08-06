@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class PortalManager : MonoBehaviour
 {
-    public Material portalFadeMat;
     public GameObject[] portalObjects;
     public List<Portal> portals = new List<Portal>();
-    //public PortalFade[] portalFades;
 
     void Awake()
     {
@@ -50,7 +48,6 @@ public class PortalManager : MonoBehaviour
             portal.otherPortal = OtherPortal(portal);
             portal.portalScaleFactor = portal.otherPortal.portalTransform.lossyScale.x / portal.portalTransform.lossyScale.x;
             portal.portalRotationFactor = Quaternion.AngleAxis(180, portal.otherPortal.portalTransform.up) * (portal.otherPortal.portalTransform.rotation * Quaternion.Inverse(portal.portalTransform.rotation));
-            //portal.portalRotationFactor = (portal.otherPortal.portalTransform.rotation * Quaternion.Inverse(portal.portalTransform.rotation));
         }
     }
 
@@ -129,74 +126,5 @@ public class PortalManager : MonoBehaviour
     public Vector4 PlaneRepresentation(Portal portal)
     {
         return new Vector4(-portal.portalPlane.normal.x, -portal.portalPlane.normal.y, -portal.portalPlane.normal.z, -portal.portalPlane.distance);
-    }
-
-    /*
-    public Transform UpdateTransform(Portal portal, Vector3 localPosition, Transform objectTransform)
-    {
-        //playerController.transform.localScale *= portalManager.portals[i].otherPortalScaleFactor;
-        //playerController.transform.position = portalManager.portals[i].otherPortal.position + (portalManager.portals[i].otherPortalRotationFactor * playerLocalDirection * playerLocalDistance * portalManager.portals[i].otherPortalScaleFactor);
-        //playerController.transform.rotation = portalManager.portals[i].otherPortalRotationFactor * playerController.transform.rotation;
-        objectTransform.position = portal.otherPortal.portalTransform.position + (portal.portalRotationFactor * (portal.portalTransform.rotation * localPosition) * portal.portalScaleFactor);
-        objectTransform.rotation = portal.portalRotationFactor * objectTransform.rotation;
-        objectTransform.localScale *= portal.portalScaleFactor;
-        return objectTransform;
-    }
-    */
-    public void FadeInPortals()
-    {
-        /*
-        foreach (PortalFade portalFade in portalFades)
-        {
-            StopAllCoroutines();
-            StartCoroutine(FI());
-
-            //if(portalFade.transform != otherPortal)
-            //{
-            //    portalFade.FadeIn();
-            //}
-        }
-        */
-    }
-
-    IEnumerator FI()
-    {
-        float fadeProgress = 0;
-        Color startColor = new Color(1, 1, 1, 0);
-        Color endColor = new Color(1, 1, 1, 1);
-        while (fadeProgress <= 1)
-        {
-            fadeProgress += Time.deltaTime / 1f;
-            startColor = Color.Lerp(startColor, endColor, fadeProgress);
-            portalFadeMat.color = startColor;
-            yield return null;
-        }
-        yield break;
-    }
-
-    public void TurnOffPortals(Transform portalParent)
-    {
-        /*
-        foreach (PortalFade portalFade in portalFades)
-        {
-            if (portalFade.transform.parent.transform == portalParent)
-            {
-                portalFade.TurnOff();
-            }
-        }
-        */
-    }
-
-    public void TurnOnPortals(Transform poralParent)
-    {
-        /*
-        foreach (PortalFade portalFade in portalFades)
-        {
-            if (portalFade.transform.parent.transform == poralParent)
-            {
-                portalFade.TurnOn();
-            }
-        }
-        */
     }
 }
