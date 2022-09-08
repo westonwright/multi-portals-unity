@@ -1,0 +1,18 @@
+{
+    "name": "weston-wright.multi-portals.editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:006e1371d5fc33f438126f372f8ac59d"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
